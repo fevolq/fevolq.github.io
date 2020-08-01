@@ -159,6 +159,202 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fevolq.github.io/2020/08/01/git%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Fu___Q">
+      <meta itemprop="description" content="一些东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FevolQ">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/01/git%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">git的一些使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-01 19:10:20 / 修改时间：19:38:05" itemprop="dateCreated datePublished" datetime="2020-08-01T19:10:20+08:00">2020-08-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、配置git"><a href="#一、配置git" class="headerlink" title="一、配置git"></a>一、配置git</h1><p>​    <strong>配置用户名：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;user.name&quot;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>配置邮箱：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email &quot;user.email&quot;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>生成密钥：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
+
+<p>​            位置：在C盘的‘C:\Users\15394.ssh’内的id_rsa.pub文件内即是密钥</p>
+<p>​    <strong>与github关联：</strong></p>
+<p>​            将密钥添加到github设置的SSH密钥中，即可上传代码至github。</p>
+<h1 id="二、使用命令"><a href="#二、使用命令" class="headerlink" title="二、使用命令"></a>二、使用命令</h1><ol>
+<li><p><strong>初始化</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>克隆远程仓库</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 仓库地址</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;fevolq&#x2F;PyCharm.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>文件暂存</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add 文件(夹)名</span><br></pre></td></tr></table></figure>
+
+<p>添加全部文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">或 git add *</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">或 git add --all</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>提交至分支</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;说明&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>推送至远程仓库</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>查看分支</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -a</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ol>
+<h1 id="三-、其他"><a href="#三-、其他" class="headerlink" title="三 、其他"></a>三 、其他</h1><h2 id="Ⅰ-删除远程仓库内的某个文件（夹）"><a href="#Ⅰ-删除远程仓库内的某个文件（夹）" class="headerlink" title="Ⅰ. 删除远程仓库内的某个文件（夹）"></a>Ⅰ. 删除远程仓库内的某个文件（夹）</h2><ol>
+<li><p>若没有该本地仓库，则先克隆至本地</p>
+</li>
+<li><p>在本地把需要删除的文件删除</p>
+</li>
+<li><p>再次执行提交到远程仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd PyCharm</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add *</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;说明&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fevolq.github.io/2020/08/01/markdown%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Fu___Q">
+      <meta itemprop="description" content="一些东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FevolQ">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/01/markdown%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">markdown的一些使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-01 19:05:59 / 修改时间：19:09:22" itemprop="dateCreated datePublished" datetime="2020-08-01T19:05:59+08:00">2020-08-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://fevolq.github.io/2020/08/01/hexo%E6%95%99%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -184,7 +380,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-01 16:09:52 / 修改时间：17:17:28" itemprop="dateCreated datePublished" datetime="2020-08-01T16:09:52+08:00">2020-08-01</time>
+              <time title="创建时间：2020-08-01 16:09:52 / 修改时间：19:04:06" itemprop="dateCreated datePublished" datetime="2020-08-01T16:09:52+08:00">2020-08-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,7 +435,7 @@
 <p>​        第106行：type: git</p>
 <p>​        第107行：repo: <a target="_blank" rel="noopener" href="https://github.com/fevolq/fevolq.github.io.git">https://github.com/fevolq/fevolq.github.io.git</a></p>
 <p>​        第108行：branch: master</p>
-<p>​    注：url和repo要根据自己的仓库地址进行更改</p>
+<p>​    <strong>注：url和repo要根据自己的仓库地址进行更改</strong></p>
 </li>
 <li><p>安装插件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog\fqBlog&gt;npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
@@ -254,7 +450,7 @@
 <p>​        输入密码时是隐式输入的（隐藏），直接输入即可</p>
 </li>
 </ol>
-<p>​      注：首次推送至github才需要1、2步，平时更新只需3、4步即可</p>
+<p>​      <strong>注：首次推送至github才需要1、2步，平时更新只需3、4步即可</strong></p>
 <h1 id="hexo相关命令"><a href="#hexo相关命令" class="headerlink" title="hexo相关命令"></a>hexo相关命令</h1><h2 id="初始化创建（标签、分类、新文章）"><a href="#初始化创建（标签、分类、新文章）" class="headerlink" title="初始化创建（标签、分类、新文章）"></a>初始化创建（标签、分类、新文章）</h2><ol>
 <li><p>创建标签（栏 ）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog\fqBlog&gt;hexo new page &quot;tags&quot;</span><br></pre></td></tr></table></figure>
@@ -267,9 +463,16 @@
 
 </li>
 </ol>
-<p>​      注：标签和分类栏创建后，均需在 主题themes文件夹内的所使用的具体的主题（next）中的 _config.yml 文件内释放出对应的栏。</p>
-<p><img src="F:\IT教程\blog\fqBlog\source\images\修改标签和分类的_config.png" alt="修改_config.yml文件"></p>
-<img src="C:\Users\15394\Pictures\4k图片\带眼镜的女生 面部 好看的人物插画绘画4k高清动漫壁纸_彼岸图网.jpg" alt="123" style="zoom:50%;" />
+<p>​      <strong>注：标签和分类栏创建后，均需在 主题themes文件夹内的所使用的具体的主题（next）中的 _config.yml 文件内释放出对应的栏。</strong></p>
+<p><img src="/2020/08/01/hexo%E6%95%99%E7%A8%8B/%E4%BF%AE%E6%94%B9_config%E6%96%87%E4%BB%B6.png" alt="修改_config.yml文件"></p>
+<h1 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h1><ol>
+<li><p>图片不显示</p>
+<p>​    将根目录下的_config文件中的post_asset_folder: true变更，这样在创建新文件(md)时会自动创建一个同名文件夹，将图片资源放入其中，引用图片时的地址可使用相对路径。</p>
+<img src="/2020/08/01/hexo%E6%95%99%E7%A8%8B/image1.png" style="zoom:80%;" alt="_config文件">
+
+<img src="/2020/08/01/hexo%E6%95%99%E7%A8%8B/image2.png" style="zoom:80%;" alt="相对地址填写"></li>
+</ol>
+
       
     </div>
 
@@ -507,7 +710,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -520,7 +723,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
