@@ -159,7 +159,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fevolq.github.io/2020/08/01/first-test/">
+    <link itemprop="mainEntityOfPage" href="https://fevolq.github.io/2020/08/01/hexo%E6%95%99%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -173,7 +173,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/01/first-test/" class="post-title-link" itemprop="url">first_test</a>
+            <a href="/2020/08/01/hexo%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">hexo教程</a>
         </h2>
 
         <div class="post-meta">
@@ -184,7 +184,136 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-01 01:05:46 / 修改时间：01:16:40" itemprop="dateCreated datePublished" datetime="2020-08-01T01:05:46+08:00">2020-08-01</time>
+              <time title="创建时间：2020-08-01 16:09:52 / 修改时间：17:17:28" itemprop="dateCreated datePublished" datetime="2020-08-01T16:09:52+08:00">2020-08-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><h2 id="本地安装hexo"><a href="#本地安装hexo" class="headerlink" title="本地安装hexo"></a>本地安装hexo</h2><ol>
+<li><p>在指定文件夹路径执行安装命令</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">F:\<span class="title">IT</span>教程\<span class="title">blog</span>&gt;<span class="title">npm</span> <span class="title">install</span> <span class="title">hexo</span>-<span class="title">cli</span> -<span class="title">g</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog&gt;hexo init fqBlog</span><br></pre></td></tr></table></figure>
+
+<p>​        fqBlog是自定义的博客名，初始化时间较长</p>
+</li>
+<li><p>安装依赖</p>
+<p>​        进入博客目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog&gt;cd fqBlog</span><br></pre></td></tr></table></figure>
+
+<p>​        安装依赖</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog\fqBlog&gt;npm install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本地运行测试</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog\fqBlog&gt;hexo server</span><br></pre></td></tr></table></figure>
+
+<p>​        运行后在浏览器输入指定的地址 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> ，即可查看效果。</p>
+<p>​        也可自定义端口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog\fqBlog&gt;hexo s -p 5555</span><br></pre></td></tr></table></figure>
+
+<p>​        5555便是自定义的端口</p>
+</li>
+</ol>
+<h2 id="hexo推送至github的指定-博客-仓库"><a href="#hexo推送至github的指定-博客-仓库" class="headerlink" title="hexo推送至github的指定(博客)仓库"></a>hexo推送至github的指定(博客)仓库</h2><ol>
+<li><p>配置”_config.yml”文件</p>
+<p>​        第16行：url: <a href="https://fevolq.github.io/">https://fevolq.github.io</a></p>
+<p>​        第106行：type: git</p>
+<p>​        第107行：repo: <a target="_blank" rel="noopener" href="https://github.com/fevolq/fevolq.github.io.git">https://github.com/fevolq/fevolq.github.io.git</a></p>
+<p>​        第108行：branch: master</p>
+<p>​    注：url和repo要根据自己的仓库地址进行更改</p>
+</li>
+<li><p>安装插件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog\fqBlog&gt;npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog\fqBlog&gt;hexo g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提交（至github）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog\fqBlog&gt;hexo d</span><br></pre></td></tr></table></figure>
+
+<p>​        中途可能会需要输入github的用户名和密码</p>
+<p>​        输入密码时是隐式输入的（隐藏），直接输入即可</p>
+</li>
+</ol>
+<p>​      注：首次推送至github才需要1、2步，平时更新只需3、4步即可</p>
+<h1 id="hexo相关命令"><a href="#hexo相关命令" class="headerlink" title="hexo相关命令"></a>hexo相关命令</h1><h2 id="初始化创建（标签、分类、新文章）"><a href="#初始化创建（标签、分类、新文章）" class="headerlink" title="初始化创建（标签、分类、新文章）"></a>初始化创建（标签、分类、新文章）</h2><ol>
+<li><p>创建标签（栏 ）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog\fqBlog&gt;hexo new page &quot;tags&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建分类（栏）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog\fqBlog&gt;hexo new page &quot;categories&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建新的文章</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog\fqBlog&gt;hexo new &quot;新文章&quot;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>​      注：标签和分类栏创建后，均需在 主题themes文件夹内的所使用的具体的主题（next）中的 _config.yml 文件内释放出对应的栏。</p>
+<p><img src="F:\IT教程\blog\fqBlog\source\images\修改标签和分类的_config.png" alt="修改_config.yml文件"></p>
+<img src="C:\Users\15394\Pictures\4k图片\带眼镜的女生 面部 好看的人物插画绘画4k高清动漫壁纸_彼岸图网.jpg" alt="123" style="zoom:50%;" />
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fevolq.github.io/2020/08/01/%E5%A4%A7%E4%BD%AC%E7%89%9B%E9%80%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Fu___Q">
+      <meta itemprop="description" content="一些东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FevolQ">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/01/%E5%A4%A7%E4%BD%AC%E7%89%9B%E9%80%BC/" class="post-title-link" itemprop="url">大佬牛逼</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-01 01:05:46 / 修改时间：16:01:50" itemprop="dateCreated datePublished" datetime="2020-08-01T01:05:46+08:00">2020-08-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -207,7 +336,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="相关学习链接"><a href="#相关学习链接" class="headerlink" title="相关学习链接"></a>相关学习链接</h2><pre><code>哔哩哔哩：https://b23.tv/xS8Msc
+          <h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><pre><code>哔哩哔哩：https://b23.tv/xS8Msc
 博客：https://dp2px.com/</code></pre>
 <h2 id="段落一"><a href="#段落一" class="headerlink" title="段落一"></a>段落一</h2><p>给i和干部内部价哦</p>
 <h2 id="段落二"><a href="#段落二" class="headerlink" title="段落二"></a>段落二</h2><pre><code>化难为人家后人</code></pre>
@@ -230,7 +359,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fevolq.github.io/2020/08/01/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://fevolq.github.io/2017/01/01/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -244,7 +373,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/01/hello-world/" class="post-title-link" itemprop="url">我的博客</a>
+            <a href="/2017/01/01/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
         </h2>
 
         <div class="post-meta">
@@ -253,10 +382,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-01 00:00:00 / 修改时间：01:11:22" itemprop="dateCreated datePublished" datetime="2020-08-01T00:00:00+08:00">2020-08-01</time>
+              <time title="创建时间：2017-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2017-01-01T00:00:00+08:00">2017-01-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-01 16:02:12" itemprop="dateModified" datetime="2020-08-01T16:02:12+08:00">2020-08-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -264,10 +399,6 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/something/" itemprop="url" rel="index"><span itemprop="name">something</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/something/others/" itemprop="url" rel="index"><span itemprop="name">others</span></a>
                 </span>
             </span>
 
@@ -376,18 +507,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">分类</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
