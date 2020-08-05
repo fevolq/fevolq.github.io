@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"fevolq.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="文章描述关于sql语句的使用。文章中以Mysql为例。 SQL的介绍SQL语句主要是针对数据库里面三个角色进行操作，对象是：库、表、行，操作包括：增删改查。 库创建一个数据库1CREATE DATABASE 库名 charset utf8;  ​        最后表示使用的编码格式，若没有，则默认使用latin1，若使用中文，则需使用gbk格式。 数据库命名规则 可以由字母、数字、下划线、＠、＃">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql语句的基础用法">
+<meta property="og:url" content="https://fevolq.github.io/2020/08/03/sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="FevolQ">
+<meta property="og:description" content="文章描述关于sql语句的使用。文章中以Mysql为例。 SQL的介绍SQL语句主要是针对数据库里面三个角色进行操作，对象是：库、表、行，操作包括：增删改查。 库创建一个数据库1CREATE DATABASE 库名 charset utf8;  ​        最后表示使用的编码格式，若没有，则默认使用latin1，若使用中文，则需使用gbk格式。 数据库命名规则 可以由字母、数字、下划线、＠、＃">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-03T08:55:55.000Z">
+<meta property="article:modified_time" content="2020-08-05T18:43:36.061Z">
+<meta property="article:author" content="Fu___Q">
+<meta property="article:tag" content="sql">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://fevolq.github.io/2020/08/03/sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>sql语句的基础用法 | FevolQ</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">FevolQ</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fevolq.github.io/2020/08/03/sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Fu___Q">
+      <meta itemprop="description" content="一些东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FevolQ">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          sql语句的基础用法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-03 16:55:55" itemprop="dateCreated datePublished" datetime="2020-08-03T16:55:55+08:00">2020-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 02:43:36" itemprop="dateModified" datetime="2020-08-06T02:43:36+08:00">2020-08-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="文章描述"><a href="#文章描述" class="headerlink" title="文章描述"></a>文章描述</h2><p>关于sql语句的使用。文章中以Mysql为例。</p>
+<h2 id="SQL的介绍"><a href="#SQL的介绍" class="headerlink" title="SQL的介绍"></a>SQL的介绍</h2><p>SQL语句主要是针对数据库里面三个角色进行操作，对象是：库、表、行，操作包括：增删改查。</p>
+<h2 id="库"><a href="#库" class="headerlink" title="库"></a>库</h2><h3 id="创建一个数据库"><a href="#创建一个数据库" class="headerlink" title="创建一个数据库"></a>创建一个数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE 库名 charset utf8;</span><br></pre></td></tr></table></figure>
+
+<p>​        最后表示使用的编码格式，若没有，则默认使用latin1，若使用中文，则需使用gbk格式。</p>
+<h3 id="数据库命名规则"><a href="#数据库命名规则" class="headerlink" title="数据库命名规则"></a>数据库命名规则</h3><ul>
+<li>可以由字母、数字、下划线、＠、＃、＄组成</li>
+<li>区分大小写</li>
+<li>唯一性</li>
+<li>不能使用关键字如 create、select</li>
+<li>不能单独使用数字</li>
+<li>最长128位</li>
+<li>基本上跟python或者js的命名规则一样</li>
+</ul>
+<h3 id="相关操作"><a href="#相关操作" class="headerlink" title="相关操作"></a>相关操作</h3><pre><code> 1. 创建数据库</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE 库名</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>查看数据库</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW DATABASES; ——查看所有数据库</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW CREATE DATABASE 库名; ——查看数据库的编码格式</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DATABASE(); ——查看当前使用的数据库</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>选择数据库（即选择使用哪个数据库）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USE 库名;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>删除数据库</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP DATABASE 库名;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>修改数据库</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE 库名 charset utf8; ——可将库的编码修改为utf8格式</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="表"><a href="#表" class="headerlink" title="表"></a>表</h2><h3 id="表的介绍"><a href="#表的介绍" class="headerlink" title="表的介绍"></a>表的介绍</h3><p>表相当于文件，表中的一条记录就相当于文件的一行内容，表中的一条记录有对应的标题，称为表的字段。<br>首行是字段（标题），其余的，一行为一条记录。<br>在mysql里面表名是不区分大小写的。</p>
+<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名(字段名1 类型[(宽度) 约束条件],字段名2 类型[(宽度) 约束条件],字段名3 类型[(宽度) 约束条件],······)</span><br></pre></td></tr></table></figure>
+
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE t1(  </span><br><span class="line">    id int, </span><br><span class="line">    name varchar(50),</span><br><span class="line">    sex enum(&#39;male&#39;,&#39;female&#39;),</span><br><span class="line">    age int(3)</span><br><span class="line">     );</span><br></pre></td></tr></table></figure>
+
+<p>此例中，第一个字段为id，记录只能为整型（即数字）；第二个为name，记录的字符长度最长为50；第三个为sex enum，记录只能在male和female中间任选；第四个为age，记录只能为整型。</p>
+<p> int型默认长度为11，char型默认长度为1  。</p>
+<p><strong>注</strong>：</p>
+<ol>
+<li>在同一张表中，字段名是不能相同</li>
+<li>宽度和约束条件可选、非必须，宽度指的就是字段长度约束，例如：char(10)里面的10</li>
+<li>字段名和类型是必须的</li>
+</ol>
+<h3 id="查看表"><a href="#查看表" class="headerlink" title="查看表"></a>查看表</h3><ol>
+<li>查看当前库内所有的表名</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW TABLES;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>查看表内的所有数据</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表名;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>查看表内的指定数据</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 数据1,数据2,··· FROM 表名;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>查看表的结构</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DESCRIBE 表名; ——可简写为desc 表名;</span><br><span class="line">SHOW CREATE TABLE 表名\G; ——查看表的详细结构</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><ol>
+<li>修改表名</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 RENAME 新表名;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>增加字段</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD 字段名 数据类型[完整性约束条件],ADD 字段名 数据类型[完整的约束条件],···; </span><br></pre></td></tr></table></figure>
+
+<p>​        通过逗号分隔，可以一下添加多个约束条件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD 字段名 数据类型[完整性约束条件] FIRST;</span><br></pre></td></tr></table></figure>
+
+<p>​        添加这个字段时，放在第一个字段的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD 字段名 数据类型[完整性约束条件] AFTER 字段名1;</span><br></pre></td></tr></table></figure>
+
+<p>​        将新字段放到指定的字段名后面的位置。</p>
+<ol start="3">
+<li>删除字段</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 DROP 字段名; </span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>修改字段</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 MODIFY 字段名 新数据类型[完整性约束条件];</span><br></pre></td></tr></table></figure>
+
+<p>​        修改了数据类型，可用于增加约束。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 CHANGE 旧字段名 新字段名 旧数据类型[完整性约束条件];</span><br></pre></td></tr></table></figure>
+
+<p>​        只改了一个字段名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 CHANGE 旧字段名 新字段名 新数据类型[完整性约束条件];</span><br></pre></td></tr></table></figure>
+
+<p>​        改了字段名，和数据类型、约束条件等。</p>
+<ol start="5">
+<li>添加外键属性</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表2名 ADD FOREIGN KEY(表2的一个字段) REFERENCES 表1名(表1的一个字段);</span><br></pre></td></tr></table></figure>
+
+<h3 id="复制表"><a href="#复制表" class="headerlink" title="复制表"></a>复制表</h3><ol>
+<li>复制表结构＋记录 （key不会复制: 主键、外键和索引）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 新表名 SELECT * FROM 被复制的表名;</span><br></pre></td></tr></table></figure>
+
+<p>​        字段名和对应值会被复制。</p>
+<ol start="2">
+<li>只复制表结构，不要数据</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 新表名 SELECT * FROM 被复制的表名 WHERE 1&#x3D;2;</span><br></pre></td></tr></table></figure>
+
+<p>​        条件为假，查不到任何记录，所以我们可以通过它来只复制表结构。</p>
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE 表名;</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ol>
+<li><p>对于表中某(几)个字段，若已存在将要插入的数据，则不执行插入，若不存在要插入的数据，则执行插入。</p>
+<p> ​    在建表时设置：</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名 (</span><br><span class="line">字段一   数据类型一，</span><br><span class="line">字段二   数据类型二，</span><br><span class="line">字段三   数据类型三，</span><br><span class="line">UNIQUE (字段一，字段三));</span><br></pre></td></tr></table></figure>
+
+<p>​            或修改已经建好的表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER  TABLE 表名 ADD UNIQUE (字段一，字段三);</span><br></pre></td></tr></table></figure>
+
+<p>此时，表中字段一和字段三中各自都不会存在相同的数据。</p>
+<p>如：插入数据时：insert ignore into 表名 (字段一，字段三) values (‘x’,’y’);</p>
+<p>此时，若字段一中存在数据x或这字段三中存在数据y，则不执行插入该数据条，只有当两者都不存在时，才插入数据。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名(</span><br><span class="line">id int PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">name varchar(20),</span><br><span class="line">sex ENUM(&quot;male&quot;,&quot;female&quot;) NOT null DEFAULT &quot;male&quot;,</span><br><span class="line">age int,</span><br><span class="line">UNIQUE name); </span><br></pre></td></tr></table></figure>
+
+<p>此例中，第一个字段为id，且是自增的；第二个字段为姓名，字符长度最大为20；第三个字段为性别，只能在“male”和“female”间选择，为空则默认为“male”;第四个字段为年龄，数据为整型。且name字段的数据可唯一。</p>
+<h2 id="行"><a href="#行" class="headerlink" title="行"></a>行</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><ol>
+<li>全部字段插入</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名 VALUES(值1，值2，值3，···);——对应字段进行插入</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>指定字段插入</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名(字段1，字段2，···) VALUES(值1，值2，···);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>插入多条记录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名 VALUES(值1，值2，···),(值1,值2,···),···;——一个括号内是一条记录</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>插入查询结果</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表1(字段1，字段2，···) SELECT(字段1，字段2，···) FROM 表2 WHERE 条件;</span><br></pre></td></tr></table></figure>
+
+<p>​        通过条件来定位哪一条数据，将表2内指定条件查询出来的结果插入到表1中，注意查询出的数据要与指定的字段对应。select中的字段是表2的字段，但数据类型要与表一的字段的数据类型对应。</p>
+<h3 id="修改（更新）数据"><a href="#修改（更新）数据" class="headerlink" title="修改（更新）数据"></a>修改（更新）数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE 表名 SET 字段1&#x3D;值1,字段2&#x3D;值2,··· WHERE 条件1 AND 条件2 AND ···;</span><br></pre></td></tr></table></figure>
+
+<p>​        同时修改多个值，用逗号分隔；通过条件来定位符合条件的数据条记录</p>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><ol>
+<li>删除指定的记录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM 表名 WHERE 条件;——删除符合条件的一些记录</span><br></pre></td></tr></table></figure>
+
+<p><strong>注</strong>：当表内有自增id时，删除了一行数据，id仍然在之前的基础上继续自增（如删除了id=3的数据行后，再添加新的数据行时，id=4）。若要自增id连续，则在新添加数据行之前，需执行  alter table 表名 auto_increment=1;</p>
+<ol start="2">
+<li>清空所有记录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM 表名;</span><br></pre></td></tr></table></figure>
+
+<p>​    但是，一般我们用truncate ，能够将id置为零，delete不能将id置零，再插入的数据记录的id数继续递增。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE 表名;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表名;    ——查询所有数据</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 字段1,字段2,··· FROM 表名; ——查询指定字段的数据</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/sql/" rel="tag"># sql</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/03/Linux%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8/" rel="prev" title="Linux">
+      <i class="fa fa-chevron-left"></i> Linux
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">文章描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">SQL的介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.1.</span> <span class="nav-text">创建一个数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="nav-number">3.2.</span> <span class="nav-text">数据库命名规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="nav-number">3.3.</span> <span class="nav-text">相关操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8"><span class="nav-number">4.</span> <span class="nav-text">表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.1.</span> <span class="nav-text">表的介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="nav-number">4.2.</span> <span class="nav-text">创建表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%A1%A8"><span class="nav-number">4.3.</span> <span class="nav-text">查看表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E8%A1%A8"><span class="nav-number">4.4.</span> <span class="nav-text">修改表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E8%A1%A8"><span class="nav-number">4.5.</span> <span class="nav-text">复制表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="nav-number">4.6.</span> <span class="nav-text">删除表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">4.7.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">4.8.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C"><span class="nav-number">5.</span> <span class="nav-text">行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">5.1.</span> <span class="nav-text">插入数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%EF%BC%88%E6%9B%B4%E6%96%B0%EF%BC%89%E6%95%B0%E6%8D%AE"><span class="nav-number">5.2.</span> <span class="nav-text">修改（更新）数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="nav-number">5.3.</span> <span class="nav-text">删除数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE"><span class="nav-number">5.4.</span> <span class="nav-text">查询数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="nav-number">6.</span> <span class="nav-text">单表查询</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Fu___Q</p>
+  <div class="site-description" itemprop="description">一些东西</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fevolq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fevolq" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/1539478260@qq.com" title="E-Mail → 1539478260@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/1539478260" title="QQ → 1539478260"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fu___Q</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -164,7 +164,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fevolq.github.io/2020/08/02/test/">
+    <link itemprop="mainEntityOfPage" href="https://fevolq.github.io/2020/08/03/sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -178,7 +178,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/02/test/" class="post-title-link" itemprop="url">test</a>
+            <a href="/2020/08/03/sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">sql语句的基础用法</a>
         </h2>
 
         <div class="post-meta">
@@ -187,10 +187,686 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-02 21:01:42 / 修改时间：21:03:41" itemprop="dateCreated datePublished" datetime="2020-08-02T21:01:42+08:00">2020-08-02</time>
+              <time title="创建时间：2020-08-03 16:55:55" itemprop="dateCreated datePublished" datetime="2020-08-03T16:55:55+08:00">2020-08-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 02:43:36" itemprop="dateModified" datetime="2020-08-06T02:43:36+08:00">2020-08-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="文章描述"><a href="#文章描述" class="headerlink" title="文章描述"></a>文章描述</h2><p>关于sql语句的使用。文章中以Mysql为例。</p>
+<h2 id="SQL的介绍"><a href="#SQL的介绍" class="headerlink" title="SQL的介绍"></a>SQL的介绍</h2><p>SQL语句主要是针对数据库里面三个角色进行操作，对象是：库、表、行，操作包括：增删改查。</p>
+<h2 id="库"><a href="#库" class="headerlink" title="库"></a>库</h2><h3 id="创建一个数据库"><a href="#创建一个数据库" class="headerlink" title="创建一个数据库"></a>创建一个数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE 库名 charset utf8;</span><br></pre></td></tr></table></figure>
+
+<p>​        最后表示使用的编码格式，若没有，则默认使用latin1，若使用中文，则需使用gbk格式。</p>
+<h3 id="数据库命名规则"><a href="#数据库命名规则" class="headerlink" title="数据库命名规则"></a>数据库命名规则</h3><ul>
+<li>可以由字母、数字、下划线、＠、＃、＄组成</li>
+<li>区分大小写</li>
+<li>唯一性</li>
+<li>不能使用关键字如 create、select</li>
+<li>不能单独使用数字</li>
+<li>最长128位</li>
+<li>基本上跟python或者js的命名规则一样</li>
+</ul>
+<h3 id="相关操作"><a href="#相关操作" class="headerlink" title="相关操作"></a>相关操作</h3><pre><code> 1. 创建数据库</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE 库名</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>查看数据库</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW DATABASES; ——查看所有数据库</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW CREATE DATABASE 库名; ——查看数据库的编码格式</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DATABASE(); ——查看当前使用的数据库</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>选择数据库（即选择使用哪个数据库）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USE 库名;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>删除数据库</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP DATABASE 库名;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>修改数据库</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE 库名 charset utf8; ——可将库的编码修改为utf8格式</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="表"><a href="#表" class="headerlink" title="表"></a>表</h2><h3 id="表的介绍"><a href="#表的介绍" class="headerlink" title="表的介绍"></a>表的介绍</h3><p>表相当于文件，表中的一条记录就相当于文件的一行内容，表中的一条记录有对应的标题，称为表的字段。<br>首行是字段（标题），其余的，一行为一条记录。<br>在mysql里面表名是不区分大小写的。</p>
+<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名(字段名1 类型[(宽度) 约束条件],字段名2 类型[(宽度) 约束条件],字段名3 类型[(宽度) 约束条件],······)</span><br></pre></td></tr></table></figure>
+
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE t1(  </span><br><span class="line">    id int, </span><br><span class="line">    name varchar(50),</span><br><span class="line">    sex enum(&#39;male&#39;,&#39;female&#39;),</span><br><span class="line">    age int(3)</span><br><span class="line">     );</span><br></pre></td></tr></table></figure>
+
+<p>此例中，第一个字段为id，记录只能为整型（即数字）；第二个为name，记录的字符长度最长为50；第三个为sex enum，记录只能在male和female中间任选；第四个为age，记录只能为整型。</p>
+<p> int型默认长度为11，char型默认长度为1  。</p>
+<p><strong>注</strong>：</p>
+<ol>
+<li>在同一张表中，字段名是不能相同</li>
+<li>宽度和约束条件可选、非必须，宽度指的就是字段长度约束，例如：char(10)里面的10</li>
+<li>字段名和类型是必须的</li>
+</ol>
+<h3 id="查看表"><a href="#查看表" class="headerlink" title="查看表"></a>查看表</h3><ol>
+<li>查看当前库内所有的表名</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW TABLES;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>查看表内的所有数据</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表名;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>查看表内的指定数据</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 数据1,数据2,··· FROM 表名;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>查看表的结构</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DESCRIBE 表名; ——可简写为desc 表名;</span><br><span class="line">SHOW CREATE TABLE 表名\G; ——查看表的详细结构</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><ol>
+<li>修改表名</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 RENAME 新表名;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>增加字段</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD 字段名 数据类型[完整性约束条件],ADD 字段名 数据类型[完整的约束条件],···; </span><br></pre></td></tr></table></figure>
+
+<p>​        通过逗号分隔，可以一下添加多个约束条件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD 字段名 数据类型[完整性约束条件] FIRST;</span><br></pre></td></tr></table></figure>
+
+<p>​        添加这个字段时，放在第一个字段的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD 字段名 数据类型[完整性约束条件] AFTER 字段名1;</span><br></pre></td></tr></table></figure>
+
+<p>​        将新字段放到指定的字段名后面的位置。</p>
+<ol start="3">
+<li>删除字段</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 DROP 字段名; </span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>修改字段</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 MODIFY 字段名 新数据类型[完整性约束条件];</span><br></pre></td></tr></table></figure>
+
+<p>​        修改了数据类型，可用于增加约束。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 CHANGE 旧字段名 新字段名 旧数据类型[完整性约束条件];</span><br></pre></td></tr></table></figure>
+
+<p>​        只改了一个字段名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 CHANGE 旧字段名 新字段名 新数据类型[完整性约束条件];</span><br></pre></td></tr></table></figure>
+
+<p>​        改了字段名，和数据类型、约束条件等。</p>
+<ol start="5">
+<li>添加外键属性</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表2名 ADD FOREIGN KEY(表2的一个字段) REFERENCES 表1名(表1的一个字段);</span><br></pre></td></tr></table></figure>
+
+<h3 id="复制表"><a href="#复制表" class="headerlink" title="复制表"></a>复制表</h3><ol>
+<li>复制表结构＋记录 （key不会复制: 主键、外键和索引）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 新表名 SELECT * FROM 被复制的表名;</span><br></pre></td></tr></table></figure>
+
+<p>​        字段名和对应值会被复制。</p>
+<ol start="2">
+<li>只复制表结构，不要数据</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 新表名 SELECT * FROM 被复制的表名 WHERE 1&#x3D;2;</span><br></pre></td></tr></table></figure>
+
+<p>​        条件为假，查不到任何记录，所以我们可以通过它来只复制表结构。</p>
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE 表名;</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ol>
+<li><p>对于表中某(几)个字段，若已存在将要插入的数据，则不执行插入，若不存在要插入的数据，则执行插入。</p>
+<p> ​    在建表时设置：</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名 (</span><br><span class="line">字段一   数据类型一，</span><br><span class="line">字段二   数据类型二，</span><br><span class="line">字段三   数据类型三，</span><br><span class="line">UNIQUE (字段一，字段三));</span><br></pre></td></tr></table></figure>
+
+<p>​            或修改已经建好的表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER  TABLE 表名 ADD UNIQUE (字段一，字段三);</span><br></pre></td></tr></table></figure>
+
+<p>此时，表中字段一和字段三中各自都不会存在相同的数据。</p>
+<p>如：插入数据时：insert ignore into 表名 (字段一，字段三) values (‘x’,’y’);</p>
+<p>此时，若字段一中存在数据x或这字段三中存在数据y，则不执行插入该数据条，只有当两者都不存在时，才插入数据。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名(</span><br><span class="line">id int PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">name varchar(20),</span><br><span class="line">sex ENUM(&quot;male&quot;,&quot;female&quot;) NOT null DEFAULT &quot;male&quot;,</span><br><span class="line">age int,</span><br><span class="line">UNIQUE name); </span><br></pre></td></tr></table></figure>
+
+<p>此例中，第一个字段为id，且是自增的；第二个字段为姓名，字符长度最大为20；第三个字段为性别，只能在“male”和“female”间选择，为空则默认为“male”;第四个字段为年龄，数据为整型。且name字段的数据可唯一。</p>
+<h2 id="行"><a href="#行" class="headerlink" title="行"></a>行</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><ol>
+<li>全部字段插入</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名 VALUES(值1，值2，值3，···);——对应字段进行插入</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>指定字段插入</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名(字段1，字段2，···) VALUES(值1，值2，···);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>插入多条记录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名 VALUES(值1，值2，···),(值1,值2,···),···;——一个括号内是一条记录</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>插入查询结果</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表1(字段1，字段2，···) SELECT(字段1，字段2，···) FROM 表2 WHERE 条件;</span><br></pre></td></tr></table></figure>
+
+<p>​        通过条件来定位哪一条数据，将表2内指定条件查询出来的结果插入到表1中，注意查询出的数据要与指定的字段对应。select中的字段是表2的字段，但数据类型要与表一的字段的数据类型对应。</p>
+<h3 id="修改（更新）数据"><a href="#修改（更新）数据" class="headerlink" title="修改（更新）数据"></a>修改（更新）数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE 表名 SET 字段1&#x3D;值1,字段2&#x3D;值2,··· WHERE 条件1 AND 条件2 AND ···;</span><br></pre></td></tr></table></figure>
+
+<p>​        同时修改多个值，用逗号分隔；通过条件来定位符合条件的数据条记录</p>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><ol>
+<li>删除指定的记录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM 表名 WHERE 条件;——删除符合条件的一些记录</span><br></pre></td></tr></table></figure>
+
+<p><strong>注</strong>：当表内有自增id时，删除了一行数据，id仍然在之前的基础上继续自增（如删除了id=3的数据行后，再添加新的数据行时，id=4）。若要自增id连续，则在新添加数据行之前，需执行  alter table 表名 auto_increment=1;</p>
+<ol start="2">
+<li>清空所有记录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM 表名;</span><br></pre></td></tr></table></figure>
+
+<p>​    但是，一般我们用truncate ，能够将id置为零，delete不能将id置零，再插入的数据记录的id数继续递增。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE 表名;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表名;    ——查询所有数据</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 字段1,字段2,··· FROM 表名; ——查询指定字段的数据</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fevolq.github.io/2020/08/03/Linux%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Fu___Q">
+      <meta itemprop="description" content="一些东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FevolQ">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/03/Linux%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Linux</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-03 16:53:39" itemprop="dateCreated datePublished" datetime="2020-08-03T16:53:39+08:00">2020-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-05 18:34:54" itemprop="dateModified" datetime="2020-08-05T18:34:54+08:00">2020-08-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="文章描述"><a href="#文章描述" class="headerlink" title="文章描述"></a>文章描述</h2><p>​        Linux系统的一些相关使用命令</p>
+<p>​        参考文献：</p>
+<p>​                        菜鸟教程：<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-tutorial.html">https://www.runoob.com/linux/linux-tutorial.html</a></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>Linux 是一套免费使用和自由传播的类 Unix 操作系统，是一个基于 POSIX 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统。</li>
+<li>Linux 能运行主要的 UNIX 工具软件、应用程序和网络协议。它支持 32 位和 64 位硬件。</li>
+<li>通常服务器使用 LAMP（Linux + Apache + MySQL + PHP）或 LNMP（Linux + Nginx+ MySQL + PHP）组合。</li>
+</ul>
+<h2 id="系统目录结构"><a href="#系统目录结构" class="headerlink" title="系统目录结构"></a>系统目录结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">命令窗口输入</span><br><span class="line">ls &#x2F;</span><br><span class="line">可查看系统目录</span><br></pre></td></tr></table></figure>
+
+<h3 id="目录解释"><a href="#目录解释" class="headerlink" title="目录解释"></a>目录解释</h3><ul>
+<li><p><strong>/bin</strong>：bin是Binary的缩写, 这个目录存放着最经常使用的命令。</p>
+</li>
+<li><p><strong>/boot</strong>：这里存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件。</p>
+</li>
+<li><p><strong>/dev</strong>：dev是Device(设备)的缩写, 该目录下存放的是Linux的外部设备，在Linux中访问设备的方式和访问文件的方式是相同的。</p>
+</li>
+<li><p><strong>etc</strong>：这个目录用来存放所有的系统管理所需要的配置文件和子目录。</p>
+</li>
+<li><p><strong>/home</strong>：用户的主目录，在Linux中，每个用户都有一个自己的目录，一般该目录名是以用户的账号命名的。</p>
+</li>
+<li><p><strong>/lib</strong>：这个目录里存放着系统最基本的动态连接共享库，其作用类似于Windows里的DLL文件。几乎所有的应用程序都需要用到这些共享库。</p>
+</li>
+<li><p><strong>/lost+found</strong>：这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件。</p>
+</li>
+<li><p><strong>/media</strong>：linux 系统会自动识别一些设备，例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下。</p>
+</li>
+<li><p><strong>/mnt</strong>：系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在/mnt/上，然后进入该目录就可以查看光驱里的内容了。</p>
+</li>
+<li><p><strong>/opt</strong>：这是给主机额外安装软件所摆放的目录。比如你安装一个ORACLE数据库则就可以放到这个目录下。默认是空的。</p>
+</li>
+<li><p><strong>/proc</strong>：这个目录是一个虚拟的目录，它是系统内存的映射，我们可以通过直接访问这个目录来获取系统信息。<br>这个目录的内容不在硬盘上而是在内存里，我们也可以直接修改里面的某些文件，比如可以通过下面的命令来屏蔽主机的ping命令，使别人无法ping你的机器：echo 1 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all</p>
+</li>
+<li><p><strong>/root</strong>：该目录为系统管理员，也称作超级权限者的用户主目录。</p>
+</li>
+<li><p><strong>/sbin</strong>：s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序。</p>
+</li>
+<li><p><strong>/selinux</strong>：这个目录是Redhat/CentOS所特有的目录，Selinux是一个安全机制，类似于windows的防火墙，但是这套机制比较复杂，这个目录就是存放selinux相关的文件的。</p>
+</li>
+<li><p><strong>/srv</strong>：该目录存放一些服务启动之后需要提取的数据。</p>
+</li>
+<li><p><strong>/sys</strong>：这是linux2.6内核的一个很大的变化。该目录下安装了2.6内核中新出现的一个文件系统 sysfs 。</p>
+<p>sysfs文件系统集成了下面3种文件系统的信息：针对进程信息的proc文件系统、针对设备的devfs文件系统以及针对伪终端的devpts文件系统。</p>
+<p>该文件系统是内核设备树的一个直观反映。</p>
+<p>当一个内核对象被创建的时候，对应的文件和目录也在内核对象子系统中被创建。</p>
+</li>
+<li><p><strong>/tmp</strong>：这个目录是用来存放一些临时文件的。</p>
+</li>
+<li><p><strong>/user</strong>：这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似于windows下的program files目录。</p>
+</li>
+<li><p><strong>/user/bin</strong>：系统用户使用的应用程序。</p>
+</li>
+<li><p><strong>/user/sbin</strong>：超级用户使用的比较高级的管理程序和系统守护程序。</p>
+</li>
+<li><p><strong>/user/src</strong>：内核源代码默认的放置目录。</p>
+</li>
+<li><p><strong>/var</strong>：这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件。</p>
+</li>
+<li><p><strong>/run</strong>：是一个临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除。如果你的系统上有 /var/run 目录，应该让它指向 run。</p>
+<p><strong>注</strong>：有几个目录比较重要，不能随意删除或更改。/etc、/bin、/sibn、/user/bin、/user/sbin、/var</p>
+</li>
+</ul>
+<h2 id="远程登录"><a href="#远程登录" class="headerlink" title="远程登录"></a>远程登录</h2><p>Linux 一般作为服务器使用，而服务器一般放在机房，你不可能在机房操作你的 Linux 服务器。</p>
+<p>这时我们就需要远程登录到Linux服务器来管理维护系统。</p>
+<p>Linux 系统中是通过 ssh 服务实现的远程登录功能。</p>
+<p>Window 系统上 Linux 远程登录客户端有 SecureCRT, Putty, SSH Secure Shell 等。</p>
+<p><strong>注</strong>：详情见网址： <a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-remote-login.html">https://www.runoob.com/linux/linux-remote-login.html</a></p>
+<h2 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h2><p>Linux系统是一种典型的多用户系统，不同的用户处于不同的地位，拥有不同的权限。为了保护系统的安全性，Linux系统对不同的用户访问同一文件（包括目录文件）的权限做了不同的规定。</p>
+<p>使用 ll 或 ls -l 命令来显示一个文件的属性以及文件所属的用户和组。</p>
+<h3 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h3><ul>
+<li>[d] ：目录</li>
+<li>[-] ：文件</li>
+<li>[l] ：链接文档</li>
+<li>[b] ：装置文件里面的可供储存的接口设备(可随机存取装置)</li>
+<li>[c] ：装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)</li>
+</ul>
+<h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><p>以三个为一组，且均为『rwx』 的三个参数的组合。其中，[ r ]代表可读(read)、[ w ]代表可写(write)、[ x ]代表可执行(execute)。 要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[ - ]而已。</p>
+<img src="/2020/08/03/Linux%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8/文件属性.png" alt="文件属性" width="260" height="120">
+
+<p>每个文件的属性由左边第一部分的10个字符来确定。从左至右用0-9这些数字来表示。</p>
+<p>第0位确定文件类型，第1-3位确定属主（该文件的所有者）拥有该文件的权限。</p>
+<p>第4-6位确定属组（所有者的同组用户）拥有该文件的权限，第7-9位确定其他用户拥有该文件的权限。</p>
+<p>其中，第1、4、7位表示读权限，如果用”r”字符表示，则有读权限，如果用”-“字符表示，则没有读权限；</p>
+<p>第2、5、8位表示写权限，如果用”w”字符表示，则有写权限，如果用”-“字符表示没有写权限；第3、6、9位表示可执行权限，如果用”x”字符表示，则有执行权限，如果用”-“字符表示，则没有执行权限。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@www &#x2F;]# ls -l</span><br><span class="line">total 64</span><br><span class="line">dr-xr-xr-x   2 root root 4096 Dec 14  2012 bin</span><br><span class="line">dr-xr-xr-x   4 root root 4096 Apr 19  2012 boot</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件属主与属组"><a href="#文件属主与属组" class="headerlink" title="文件属主与属组"></a>文件属主与属组</h3><p>Linux系统按文件所有者、文件所有者同组用户和其他用户来规定了不同的文件访问权限。</p>
+<p>对于文件来说，它都有一个特定的所有者，也就是对该文件具有所有权的用户。同时，在Linux系统中，用户是按组分类的，一个用户属于一个或多个组。文件所有者以外的用户又可以分为文件所有者的同组用户和其他用户。</p>
+<p>对于 root 用户来说，一般情况下，文件的权限对其不起作用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@www &#x2F;]# ls -l</span><br><span class="line">total 64</span><br><span class="line">drwxr-xr-x 2 root  root  4096 Feb 15 14:46 cron</span><br><span class="line">drwxr-xr-x 3 mysql mysql 4096 Apr 21  2014 mysql</span><br></pre></td></tr></table></figure>
+
+<p>在以上实例中，mysql 文件是一个目录文件，属主和属组都为 mysql，属主有可读、可写、可执行的权限；与属主同组的其他用户有可读和可执行的权限；其他用户也有可读和可执行的权限。</p>
+<h3 id="更改文件属性"><a href="#更改文件属性" class="headerlink" title="更改文件属性"></a>更改文件属性</h3><ol>
+<li><p>chgrp：更改文件属组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chgrp [-R] 属组名 文件名</span><br></pre></td></tr></table></figure>
+
+<p>参数选项</p>
+<ul>
+<li>-R：递归更改文件属组，就是在更改某个目录文件的属组时，如果加上-R的参数，那么该目录下的所有文件的属组都会更改。</li>
+</ul>
+</li>
+<li><p>chown：更改文件属主，也可以同时更改文件属组</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown [-R] 属主名 文件名</span><br><span class="line">chown [-R] 属主名：属组名 文件名</span><br></pre></td></tr></table></figure>
+
+<p>   如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">进入 &#x2F;root 目录（~）将install.log的拥有者改为bin这个账号：</span><br><span class="line">[root@www ~] cd ~</span><br><span class="line">[root@www ~]# chown bin install.log</span><br><span class="line"></span><br><span class="line">将install.log的拥有者与群组改回为root：</span><br><span class="line">[root@www ~]# chown root:root install.log</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>chmod：更改文件9个属性</p>
+<p>Linux文件属性有两种设置方法，一种是数字，一种是符号。</p>
+<p>Linux文件的基本权限就有九个，分别是owner/group/others三种身份各有自己的read/write/execute权限。</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#变更权限的指令chmod的语法是这样的：</span><br><span class="line">chmod [-R] xyz 文件或目录</span><br></pre></td></tr></table></figure>
+
+<p>   选项与参数：</p>
+<ul>
+<li>xyz : 就是刚刚提到的数字类型的权限属性，为 rwx 属性数值的相加。</li>
+<li>-R : 进行递归(recursive)的持续变更，亦即连同次目录下的所有文件都会变更</li>
+</ul>
+<p>   <strong>注</strong>：详见网址</p>
+<h2 id="目录管理"><a href="#目录管理" class="headerlink" title="目录管理"></a>目录管理</h2><p>Linux的目录结构为树状结构，最顶级的目录为根目录 /。<br>其他目录通过挂载可以将它们添加到树中，通过解除挂载可以移除它们。<br>绝对路径：路径的写法，由根目录 / 写起，例如： /usr/share/doc 这个目录。<br>相对路径：路径的写法，不是由 / 写起，例如由 /usr/share/doc 要到 /usr/share/man 底下时，可以写成： cd ../man 这就是相对路径的写法啦！</p>
+<h3 id="处理目录的常用命令"><a href="#处理目录的常用命令" class="headerlink" title="处理目录的常用命令"></a>处理目录的常用命令</h3><ul>
+<li><p>ls: 列出目录及文件名</p>
+</li>
+<li><p>cd：切换目录</p>
+</li>
+<li><p>pwd：显示目前的目录</p>
+</li>
+<li><p>mkdir：创建一个新的目录</p>
+</li>
+<li><p>rmdir：删除一个空的目录</p>
+</li>
+<li><p>cp: 复制文件或目录</p>
+</li>
+<li><p>rm: 移除文件或目录</p>
+</li>
+<li><p>mv: 移动文件与目录，或修改文件与目录的名称</p>
+<p>注：可以使用 <em>man [命令]</em> 来查看各个命令的使用文档，如 ：man cp。</p>
+</li>
+</ul>
+<h3 id="ls-（列出目录）"><a href="#ls-（列出目录）" class="headerlink" title="ls （列出目录）"></a>ls （列出目录）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# ls [-aAdfFhilnrRSt] 目录名称</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-a ：全部的文件，连同隐藏文件( 开头为 . 的文件) 一起列出来(常用)</li>
+<li>-d ：仅列出目录本身，而不是列出目录内的文件数据(常用)</li>
+<li>-l ：长数据串列出，包含文件的属性与权限等等数据；(常用)</li>
+</ul>
+<p>如：将 家目录 下的所有文件列出来（包含属性与隐藏文档）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# ls -al ~</span><br></pre></td></tr></table></figure>
+
+<h3 id="cd-（切换目录）"><a href="#cd-（切换目录）" class="headerlink" title="cd （切换目录）"></a>cd （切换目录）</h3><p>Change Directory，用来变换工作目录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd [相对路径或绝对路径]</span><br></pre></td></tr></table></figure>
+
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#创建 runoob 目录：</span><br><span class="line">[root@www ~]# mkdir runoob</span><br><span class="line"></span><br><span class="line">#使用绝对路径切换到 runoob 目录：</span><br><span class="line">[root@www ~]# cd &#x2F;root&#x2F;runoob&#x2F;</span><br><span class="line"></span><br><span class="line">#使用相对路径切换到 runoob 目录：</span><br><span class="line">[root@www ~]# cd .&#x2F;runoob&#x2F;</span><br><span class="line"></span><br><span class="line">#回到家目录，即 &#x2F;root 目录：</span><br><span class="line">[root@www ~]# cd ~</span><br><span class="line"></span><br><span class="line">#去到目前的上一级目录：</span><br><span class="line">[root@www ~]# cd ..</span><br></pre></td></tr></table></figure>
+
+<h3 id="pwd-（显示目前所在的目录）"><a href="#pwd-（显示目前所在的目录）" class="headerlink" title="pwd （显示目前所在的目录）"></a>pwd （显示目前所在的目录）</h3><p>Print Working Directory</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# pwd [-P]</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li><strong>-P</strong> ：显示出确实的路径，而非使用连结 (link) 路径。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#如：显示目前的工作目录</span><br><span class="line">[root@www ~]# pwd</span><br></pre></td></tr></table></figure>
+
+<h3 id="mkdir-（创建新目录）"><a href="#mkdir-（创建新目录）" class="headerlink" title="mkdir （创建新目录）"></a>mkdir （创建新目录）</h3><p>make directory</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir [-mp] 目录名称</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-m ：配置文件的权限喔！直接配置，不需要看默认权限 (umask) 的脸色～</li>
+<li>-p ：帮助你直接将所需要的目录(包含上一级目录)递归创建起来！</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#创建多层目录</span><br><span class="line">[root@www ~]# cd &#x2F;tmp</span><br><span class="line">[root@www tmp]# mkdir test</span><br><span class="line">[root@www tmp]# mkdir -p test1&#x2F;test2&#x2F;test3&#x2F;test4</span><br></pre></td></tr></table></figure>
+
+<p>若不使用-p，则无法自行创建多层目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#配置权限</span><br><span class="line">[root@www tmp]# mkdir -m 711 test2</span><br><span class="line">[root@www tmp]# ls -l</span><br><span class="line">drwxr-xr-x  3 root  root 4096 Jul 18 12:50 test</span><br><span class="line">drwxr-xr-x  3 root  root 4096 Jul 18 12:53 test1</span><br><span class="line">drwx--x--x  2 root  root 4096 Jul 18 12:54 test2</span><br></pre></td></tr></table></figure>
+
+<p>若没有-m来强制配置属性，则系统会使用默认属性。</p>
+<p>711的使用方法详见<a href="#%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7">更改文件属性</a></p>
+<h3 id="rmdir-（删除空的目录）"><a href="#rmdir-（删除空的目录）" class="headerlink" title="rmdir （删除空的目录）"></a>rmdir （删除空的目录）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [-p] 目录名称</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li><strong>-p ：</strong>连同上一级『空的』目录也一起删除</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#删除runoob目录：</span><br><span class="line">[root@www tmp]# rmdir runoob&#x2F;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@www tmp]# rmdir test</span><br><span class="line">[root@www tmp]# rmdir test1        &lt;&#x3D;&#x3D; 文件夹内有内容，故无法删除</span><br><span class="line">[root@www tmp]# rmdir -p test1&#x2F;test2&#x2F;test3&#x2F;test4</span><br></pre></td></tr></table></figure>
+
+<h3 id="cp-（复制文件或目录）"><a href="#cp-（复制文件或目录）" class="headerlink" title="cp （复制文件或目录）"></a>cp （复制文件或目录）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# cp [-adfilprsu] 来源档(source) 目标档(destination)</span><br><span class="line">[root@www ~]# cp [options] source1 source2 source3 .... directory</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li><strong>-a：</strong>相当於 -pdr 的意思，至於 pdr 请参考下列说明；(常用)</li>
+<li><strong>-d：</strong>若来源档为连结档的属性(link file)，则复制连结档属性而非文件本身；</li>
+<li><strong>-f：</strong>为强制(force)的意思，若目标文件已经存在且无法开启，则移除后再尝试一次；</li>
+<li><strong>-i：</strong>若目标档(destination)已经存在时，在覆盖时会先询问动作的进行(常用)</li>
+<li><strong>-l：</strong>进行硬式连结(hard link)的连结档创建，而非复制文件本身；</li>
+<li><strong>-p：</strong>连同文件的属性一起复制过去，而非使用默认属性(备份常用)；</li>
+<li><strong>-r：</strong>递归持续复制，用於目录的复制行为；(常用)</li>
+<li><strong>-s：</strong>复制成为符号连结档 (symbolic link)，亦即『捷径』文件；</li>
+<li><strong>-u：</strong>若 destination 比 source 旧才升级 destination ！</li>
+</ul>
+<p>例：用 root 身份，将 root 目录下的 .bashrc 复制到 /tmp 下，并命名为 bashrc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# cp ~&#x2F;.bashrc &#x2F;tmp&#x2F;bashrc</span><br><span class="line">[root@www ~]# cp -i ~&#x2F;.bashrc &#x2F;tmp&#x2F;bashrc</span><br><span class="line">cp: overwrite &#96;&#x2F;tmp&#x2F;bashrc&#39;? n  &lt;&#x3D;&#x3D;n不覆盖，y为覆盖</span><br></pre></td></tr></table></figure>
+
+<h3 id="rm-（移除文件或目录）"><a href="#rm-（移除文件或目录）" class="headerlink" title="rm （移除文件或目录）"></a>rm （移除文件或目录）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [-fir] 文件或目录</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-f ：就是 force 的意思，忽略不存在的文件，不会出现警告信息；</li>
+<li>-i ：互动模式，在删除前会询问使用者是否动作</li>
+<li>-r ：递归删除啊！最常用在目录的删除了！这是非常危险的选项！！！</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@www tmp]# rm -i bashrc</span><br><span class="line">rm: remove regular file &#96;bashrc&#39;? y</span><br></pre></td></tr></table></figure>
+
+<h3 id="mv-（移动文件与目录，或修改名称）"><a href="#mv-（移动文件与目录，或修改名称）" class="headerlink" title="mv （移动文件与目录，或修改名称）"></a>mv （移动文件与目录，或修改名称）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# mv [-fiu] source destination</span><br><span class="line">[root@www ~]# mv [options] source1 source2 source3 .... directory</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-f ：force 强制的意思，如果目标文件已经存在，不会询问而直接覆盖；</li>
+<li>-i ：若目标文件 (destination) 已经存在时，就会询问是否覆盖！</li>
+<li>-u ：若目标文件已经存在，且 source 比较新，才会升级 (update)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#复制一文件，创建一目录，将文件移动到目录中</span><br><span class="line">[root@www ~]# cd &#x2F;tmp</span><br><span class="line">[root@www tmp]# cp ~&#x2F;.bashrc bashrc</span><br><span class="line">[root@www tmp]# mkdir mvtest</span><br><span class="line">[root@www tmp]# mv bashrc mvtest</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#重命名</span><br><span class="line">[root@www tmp]# mv mvtest mvtest2</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="文件内容查看"><a href="#文件内容查看" class="headerlink" title="文件内容查看"></a>文件内容查看</h2><p>Linux系统中使用以下命令来查看文件的内容：</p>
+<ul>
+<li>cat 由第一行开始显示文件内容</li>
+<li>tac 从最后一行开始显示，可以看出 tac 是 cat 的倒着写！</li>
+<li>nl  显示的时候，顺道输出行号！</li>
+<li>more 一页一页的显示文件内容</li>
+<li>less 与 more 类似，但是比 more 更好的是，他可以往前翻页！</li>
+<li>head 只看头几行</li>
+<li>tail 只看尾巴几行</li>
+</ul>
+<p>可以使用 *man [命令]*来查看各个命令的使用文档，如 ：man cp。</p>
+<h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><p>由第一行开始显示文件内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat [-AbEnTv]</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-A ：相当於 -vET 的整合选项，可列出一些特殊字符而不是空白而已；</li>
+<li>-b ：列出行号，仅针对非空白行做行号显示，空白行不标行号！</li>
+<li>-E ：将结尾的断行字节 $ 显示出来；</li>
+<li>-n ：列印出行号，连同空白行也会有行号，与 -b 的选项不同；</li>
+<li>-T ：将 [tab] 按键以 ^I 显示出来；</li>
+<li>-v ：列出一些看不出来的特殊字符</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查看 &#x2F;etc&#x2F;issue 文件的内容</span><br><span class="line">[root@www ~]# cat &#x2F;etc&#x2F;issue</span><br></pre></td></tr></table></figure>
+
+<h3 id="tac"><a href="#tac" class="headerlink" title="tac"></a>tac</h3><p>tac与cat命令刚好相反，文件内容从最后一行开始显示，可以看出 tac 是 cat 的倒着写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# tac &#x2F;etc&#x2F;issue</span><br></pre></td></tr></table></figure>
+
+<h3 id="nl"><a href="#nl" class="headerlink" title="nl"></a>nl</h3><p>显示行号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nl [-bnw] 文件</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-b ：指定行号指定的方式，主要有两种：<br>-b a ：表示不论是否为空行，也同样列出行号(类似 cat -n)；<br>-b t ：如果有空行，空的那一行不要列出行号(默认值)；</li>
+<li>-n ：列出行号表示的方法，主要有三种：<br>-n ln ：行号在荧幕的最左方显示；<br>-n rn ：行号在自己栏位的最右方显示，且不加 0 ；<br>-n rz ：行号在自己栏位的最右方显示，且加 0 ；</li>
+<li>-w ：行号栏位的占用的位数。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#用nl列出&#x2F;etc&#x2F;issue的内容</span><br><span class="line">[root@www ~]# nl &#x2F;etc&#x2F;issue</span><br></pre></td></tr></table></figure>
+
+<h3 id="more"><a href="#more" class="headerlink" title="more"></a>more</h3><p>一页一页翻动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#以下实例输出&#x2F;etc&#x2F;man.config文件的内容</span><br><span class="line">[root@www ~]# more &#x2F;etc&#x2F;man_db.config </span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">...(省略)...</span><br><span class="line">--More--    &lt;&#x3D;&#x3D; 重点在这一行，光标也会在这里等待命令</span><br></pre></td></tr></table></figure>
+
+<p>在 more 这个程序的运行过程中，你有几个按键可以按的：</p>
+<ul>
+<li>空白键 (space)：代表向下翻一页；</li>
+<li>Enter     ：代表向下翻『一行』；</li>
+<li>/字串     ：代表在这个显示的内容当中，向下搜寻『字串』这个关键字；</li>
+<li>:f      ：立刻显示出档名以及目前显示的行数；</li>
+<li>q       ：代表立刻离开 more ，不再显示该文件内容。</li>
+<li>b 或 [ctrl]-b ：代表往回翻页，不过这动作只对文件有用，对管线无用。</li>
+</ul>
+<h3 id="less"><a href="#less" class="headerlink" title="less"></a>less</h3><p>一页一页翻动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#以下实例输出&#x2F;etc&#x2F;man.config文件的内容</span><br><span class="line">[root@www ~]# less &#x2F;etc&#x2F;man.config</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">...(省略)...</span><br><span class="line">:    &lt;&#x3D;&#x3D; 在这里等待输入命令</span><br></pre></td></tr></table></figure>
+
+<p>less运行时可以输入的命令有：</p>
+<ul>
+<li>空白键  ：向下翻动一页；</li>
+<li>[pagedown]：向下翻动一页；</li>
+<li>[pageup] ：向上翻动一页；</li>
+<li>/字串   ：向下搜寻『字串』的功能；</li>
+<li>?字串   ：向上搜寻『字串』的功能；</li>
+<li>n     ：重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>N     ：反向的重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>q     ：离开 less 这个程序；</li>
+</ul>
+<h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><p>去除文件前面几行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head [-n number] 文件 </span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-n ：后面接数字，代表显示几行的意思</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# head &#x2F;etc&#x2F;man.config</span><br></pre></td></tr></table></figure>
+
+<p>默认的情况中，显示前面 10 行！若要显示前 20 行，则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# head -n 20 &#x2F;etc&#x2F;man.config</span><br></pre></td></tr></table></figure>
+
+<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><p>去除文件后面几行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail [-n number] 文件</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-n ：后面接数字，代表显示几行的意思</li>
+<li>-f ：表示持续侦测后面所接的档名，要等到按下[ctrl]-c才会结束tail的侦测</li>
+</ul>
+<h2 id="用户与用户组管理"><a href="#用户与用户组管理" class="headerlink" title="用户与用户组管理"></a>用户与用户组管理</h2><h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><h2 id="vi-vim"><a href="#vi-vim" class="headerlink" title="vi/vim"></a>vi/vim</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-command-manual.html">Linux命令大全</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fevolq.github.io/2020/08/02/test%20and%20question/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Fu___Q">
+      <meta itemprop="description" content="一些东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FevolQ">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/02/test%20and%20question/" class="post-title-link" itemprop="url">test and question</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-02 21:01:42" itemprop="dateCreated datePublished" datetime="2020-08-02T21:01:42+08:00">2020-08-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-04 23:43:23" itemprop="dateModified" datetime="2020-08-04T23:43:23+08:00">2020-08-04</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -212,7 +888,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="文章描述"><a href="#文章描述" class="headerlink" title="文章描述"></a>文章描述</h2><p>​        测试用文档</p>
+          <h2 id="文章描述"><a href="#文章描述" class="headerlink" title="文章描述"></a>文章描述</h2><p>​        测试用文档  暨  遇到的某些问题</p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><ol>
+<li>网站中的目录树不生效（详见linux文件）</li>
+</ol>
 
       
     </div>
@@ -341,7 +1020,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-02 18:14:28" itemprop="dateModified" datetime="2020-08-02T18:14:28+08:00">2020-08-02</time>
+                <time title="修改时间：2020-08-05 18:37:12" itemprop="dateModified" datetime="2020-08-05T18:37:12+08:00">2020-08-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -365,9 +1044,9 @@
 
       
           <h2 id="文章描述"><a href="#文章描述" class="headerlink" title="文章描述"></a>文章描述</h2><p>​        一些大佬的教程网址 或 个人认为值得收藏的一些大佬网址</p>
-<h1 id="博客相关"><a href="#博客相关" class="headerlink" title="博客相关"></a>博客相关</h1><h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><pre><code>哔哩哔哩：https://b23.tv/xS8Msc
+<h2 id="博客相关"><a href="#博客相关" class="headerlink" title="博客相关"></a>博客相关</h2><h3 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h3><pre><code>哔哩哔哩：https://b23.tv/xS8Msc
 博客：https://dp2px.com/</code></pre>
-<h2 id="美化"><a href="#美化" class="headerlink" title="美化"></a>美化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">主题美化：http:&#x2F;&#x2F;pythonywy.gitee.io&#x2F;my-blog&#x2F;2018&#x2F;08&#x2F;24&#x2F;undefined&#x2F;</span><br></pre></td></tr></table></figure>
+<h3 id="美化"><a href="#美化" class="headerlink" title="美化"></a>美化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">主题美化：http:&#x2F;&#x2F;pythonywy.gitee.io&#x2F;my-blog&#x2F;2018&#x2F;08&#x2F;24&#x2F;undefined&#x2F;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -521,7 +1200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-02 19:57:49" itemprop="dateModified" datetime="2020-08-02T19:57:49+08:00">2020-08-02</time>
+                <time title="修改时间：2020-08-05 18:38:53" itemprop="dateModified" datetime="2020-08-05T18:38:53+08:00">2020-08-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -549,7 +1228,7 @@
 
       
           <h2 id="文章描述"><a href="#文章描述" class="headerlink" title="文章描述"></a>文章描述</h2><p>​        git的一些使用方法。</p>
-<h1 id="一、配置git"><a href="#一、配置git" class="headerlink" title="一、配置git"></a>一、配置git</h1><p>​    <strong>配置用户名：</strong></p>
+<h2 id="一、配置git"><a href="#一、配置git" class="headerlink" title="一、配置git"></a>一、配置git</h2><p>​    <strong>配置用户名：</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;user.name&quot;</span><br></pre></td></tr></table></figure>
 
 <p>​    <strong>配置邮箱：</strong></p>
@@ -561,7 +1240,7 @@
 <p>​            位置：在C盘的‘C:\Users\15394.ssh’内的id_rsa.pub文件内即是密钥</p>
 <p>​    <strong>与github关联：</strong></p>
 <p>​            将密钥添加到github设置的SSH密钥中，即可上传代码至github。</p>
-<h1 id="二、使用命令"><a href="#二、使用命令" class="headerlink" title="二、使用命令"></a>二、使用命令</h1><ol>
+<h2 id="二、使用命令"><a href="#二、使用命令" class="headerlink" title="二、使用命令"></a>二、使用命令</h2><ol>
 <li><p><strong>初始化</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 </li>
@@ -595,7 +1274,7 @@
 
 </li>
 </ol>
-<h1 id="三-、其他"><a href="#三-、其他" class="headerlink" title="三 、其他"></a>三 、其他</h1><h2 id="Ⅰ-删除远程仓库内的某个文件（夹）"><a href="#Ⅰ-删除远程仓库内的某个文件（夹）" class="headerlink" title="Ⅰ. 删除远程仓库内的某个文件（夹）"></a>Ⅰ. 删除远程仓库内的某个文件（夹）</h2><ol>
+<h2 id="三-、其他"><a href="#三-、其他" class="headerlink" title="三 、其他"></a>三 、其他</h2><h3 id="Ⅰ-删除远程仓库内的某个文件（夹）"><a href="#Ⅰ-删除远程仓库内的某个文件（夹）" class="headerlink" title="Ⅰ. 删除远程仓库内的某个文件（夹）"></a>Ⅰ. 删除远程仓库内的某个文件（夹）</h3><ol>
 <li><p>若没有该本地仓库，则先克隆至本地</p>
 </li>
 <li><p>在本地把需要删除的文件删除</p>
@@ -661,7 +1340,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-02 20:54:36" itemprop="dateModified" datetime="2020-08-02T20:54:36+08:00">2020-08-02</time>
+                <time title="修改时间：2020-08-05 18:12:40" itemprop="dateModified" datetime="2020-08-05T18:12:40+08:00">2020-08-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -689,7 +1368,7 @@
 
       
           <h2 id="文章描述"><a href="#文章描述" class="headerlink" title="文章描述"></a>文章描述</h2><p>​        hexo的一些使用</p>
-<h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><h2 id="本地安装hexo"><a href="#本地安装hexo" class="headerlink" title="本地安装hexo"></a>本地安装hexo</h2><ol>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><h3 id="本地安装hexo"><a href="#本地安装hexo" class="headerlink" title="本地安装hexo"></a>本地安装hexo</h3><ol>
 <li><p>在指定文件夹路径执行安装命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog&gt;npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
 </li>
@@ -715,7 +1394,7 @@
 <p>​        5555便是自定义的端口</p>
 </li>
 </ol>
-<h2 id="hexo推送至github的指定-博客-仓库"><a href="#hexo推送至github的指定-博客-仓库" class="headerlink" title="hexo推送至github的指定(博客)仓库"></a>hexo推送至github的指定(博客)仓库</h2><ol>
+<h3 id="hexo推送至github的指定-博客-仓库"><a href="#hexo推送至github的指定-博客-仓库" class="headerlink" title="hexo推送至github的指定(博客)仓库"></a>hexo推送至github的指定(博客)仓库</h3><ol>
 <li><p>配置”_config.yml”文件</p>
 <p>​        第16行：url: <a href="https://fevolq.github.io/">https://fevolq.github.io</a></p>
 <p>​        第106行：type: git</p>
@@ -737,7 +1416,7 @@
 </li>
 </ol>
 <p>​      <strong>注：首次推送至github才需要1、2步，平时更新只需3、4步即可</strong></p>
-<h1 id="hexo相关命令"><a href="#hexo相关命令" class="headerlink" title="hexo相关命令"></a>hexo相关命令</h1><h2 id="初始化创建（标签、分类、新文章）"><a href="#初始化创建（标签、分类、新文章）" class="headerlink" title="初始化创建（标签、分类、新文章）"></a>初始化创建（标签、分类、新文章）</h2><ol>
+<h2 id="hexo相关命令"><a href="#hexo相关命令" class="headerlink" title="hexo相关命令"></a>hexo相关命令</h2><h3 id="初始化创建（标签、分类、新文章）"><a href="#初始化创建（标签、分类、新文章）" class="headerlink" title="初始化创建（标签、分类、新文章）"></a>初始化创建（标签、分类、新文章）</h3><ol>
 <li><p>创建标签（栏 ）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\IT教程\blog\fqBlog&gt;hexo new page &quot;tags&quot;</span><br></pre></td></tr></table></figure>
 </li>
@@ -751,7 +1430,7 @@
 </ol>
 <p>​      <strong>注：标签和分类栏创建后，均需在 主题themes文件夹内的所使用的具体的主题（next）中的 _config.yml 文件内释放出对应的栏。</strong></p>
 <p><img src="/2020/07/30/hexo%E6%95%99%E7%A8%8B/%E4%BF%AE%E6%94%B9_config%E6%96%87%E4%BB%B6.png" alt="修改_config.yml文件"></p>
-<h1 id="一些遇到的问题"><a href="#一些遇到的问题" class="headerlink" title="一些遇到的问题"></a>一些遇到的问题</h1><ol>
+<h2 id="一些遇到的问题"><a href="#一些遇到的问题" class="headerlink" title="一些遇到的问题"></a>一些遇到的问题</h2><ol>
 <li><p>图片不显示</p>
 <p>​    将根目录下的_config文件中的post_asset_folder: true变更，这样在创建新文件(md)时会自动创建一个同名文件夹，将图片资源放入其中，引用图片时的地址可使用相对路径。</p>
 <img src="/2020/07/30/hexo%E6%95%99%E7%A8%8B/image1.png" style="zoom:80%;" alt="_config文件">
@@ -919,7 +1598,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -932,7 +1611,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
