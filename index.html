@@ -195,7 +195,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 02:43:36" itemprop="dateModified" datetime="2020-08-06T02:43:36+08:00">2020-08-06</time>
+                <time title="修改时间：2020-08-06 17:46:51" itemprop="dateModified" datetime="2020-08-06T17:46:51+08:00">2020-08-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,11 +242,11 @@
 <ol start="2">
 <li>查看数据库</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW DATABASES; ——查看所有数据库</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查看所有数据库</span><br><span class="line">SHOW DATABASES;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW CREATE DATABASE 库名; ——查看数据库的编码格式</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查看数据库的编码格式</span><br><span class="line">SHOW CREATE DATABASE 库名;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DATABASE(); ——查看当前使用的数据库</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查看当前使用的数据库</span><br><span class="line">SELECT DATABASE();</span><br></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>选择数据库（即选择使用哪个数据库）</li>
@@ -261,7 +261,7 @@
 <ol start="5">
 <li>修改数据库</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE 库名 charset utf8; ——可将库的编码修改为utf8格式</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#可将库的编码修改为utf8格式</span><br><span class="line">ALTER DATABASE 库名 charset utf8;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -300,7 +300,7 @@
 <ol start="4">
 <li>查看表的结构</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DESCRIBE 表名; ——可简写为desc 表名;</span><br><span class="line">SHOW CREATE TABLE 表名\G; ——查看表的详细结构</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DESCRIBE 表名; ——可简写为desc 表名</span><br><span class="line"></span><br><span class="line">#查看表的详细结构</span><br><span class="line">SHOW CREATE TABLE 表名\G;</span><br></pre></td></tr></table></figure>
 
 <h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><ol>
 <li>修改表名</li>
@@ -374,7 +374,7 @@
 <h2 id="行"><a href="#行" class="headerlink" title="行"></a>行</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><ol>
 <li>全部字段插入</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名 VALUES(值1，值2，值3，···);——对应字段进行插入</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#对应字段进行插入</span><br><span class="line">INSERT INTO 表名 VALUES(值1，值2，值3，···);</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>指定字段插入</li>
@@ -384,7 +384,7 @@
 <ol start="3">
 <li>插入多条记录</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名 VALUES(值1，值2，···),(值1,值2,···),···;——一个括号内是一条记录</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#一个括号内是一条记录</span><br><span class="line">INSERT INTO 表名 VALUES(值1，值2，···),(值1,值2,···),···;</span><br></pre></td></tr></table></figure>
 
 <ol start="4">
 <li>插入查询结果</li>
@@ -398,7 +398,7 @@
 <h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><ol>
 <li>删除指定的记录</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM 表名 WHERE 条件;——删除符合条件的一些记录</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#删除符合条件的一些记录</span><br><span class="line">DELETE FROM 表名 WHERE 条件;</span><br></pre></td></tr></table></figure>
 
 <p><strong>注</strong>：当表内有自增id时，删除了一行数据，id仍然在之前的基础上继续自增（如删除了id=3的数据行后，再添加新的数据行时，id=4）。若要自增id连续，则在新添加数据行之前，需执行  alter table 表名 auto_increment=1;</p>
 <ol start="2">
@@ -409,15 +409,113 @@
 <p>​    但是，一般我们用truncate ，能够将id置为零，delete不能将id置零，再插入的数据记录的id数继续递增。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE 表名;</span><br></pre></td></tr></table></figure>
 
-<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表名;    ——查询所有数据</span><br></pre></td></tr></table></figure>
+<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查询所有数据</span><br><span class="line">SELECT * FROM 表名;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 字段1,字段2,··· FROM 表名; ——查询指定字段的数据</span><br></pre></td></tr></table></figure>
-
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查询指定字段的数据</span><br><span class="line">SELECT 字段1,字段2,··· FROM 表名;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h2>
+
+
+<h2 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h2><h3 id="全部查询"><a href="#全部查询" class="headerlink" title="全部查询"></a>全部查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表名;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 字段1,字段2,···,字段n FROM 表名;    ——将所有字段都写上</span><br></pre></td></tr></table></figure>
+
+<h3 id="去重查询（distinct）"><a href="#去重查询（distinct）" class="headerlink" title="去重查询（distinct）"></a>去重查询（distinct）</h3><p>当某个字段内有数据重复时，使用distinct可去重查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#查询指定字段内所有的数据，并全部返回v</span><br><span class="line">SELECT 字段 FROM 表名;</span><br><span class="line"></span><br><span class="line">#查询字段内所有数据，但重复的数据只返回一个</span><br><span class="line">SELECT DISTINCT 字段 FROM 表名;</span><br><span class="line"></span><br><span class="line">#当某条记录的字段1和字段2的数据都与另一条记录相同时，才会去重</span><br><span class="line">SELECT DISTINCT 字段1,字段2 FROM</span><br></pre></td></tr></table></figure>
+
+<p><strong>注</strong>：distinct一般必须写在字段前面，不然会报错，但有些特别的用法可以结合着写到字段的中间或者后面<br>      （distinct 想写在其他字段后面需要配合聚合函数来写）。</p>
+<h3 id="四则运算查询"><a href="#四则运算查询" class="headerlink" title="四则运算查询"></a>四则运算查询</h3><p>通过查询语句查出来的表是内存中的一个虚拟表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#查询字段1和字段2，且字段2的数据都乘以n，字段2的字段名变成“字段2*n”</span><br><span class="line">SELECT 字段1,字段2*n FROM 表名;</span><br><span class="line"></span><br><span class="line">#查询结果同上，但给与了字段2一个新的字段名</span><br><span class="line">SELECT 字段1,字段2*n AS 新字段名 FROM 表名;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义显示格式"><a href="#自定义显示格式" class="headerlink" title="自定义显示格式"></a>自定义显示格式</h3><p>concat()函数用于连接字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT CONCAT(&quot;名字1：&quot;,字段1,&quot;名字2：&quot;,字段2,···) AS 新字段名 FROM 表名;</span><br><span class="line"></span><br><span class="line">SELECT concat(&quot;名字1：&quot;,字段1,&quot;名字2：&quot;,字段2,···) AS 新字段名1</span><br><span class="line"></span><br><span class="line">SELECT concat(&quot;名字1：&quot;,字段1,&quot;名字2：&quot;,字段2,···) AS 新字段名1,concat(&quot;名字3：&quot;,字段3) AS 新字段名2 FROM 表名;    ——这样可分成两列</span><br><span class="line"></span><br><span class="line">SELECT concat_ws(&quot;拼接符&quot;,字段1,字段2,···) AS 新字段名 FROM 表名; ——concat_ws()第一个参数为分隔符来进行拼接</span><br></pre></td></tr></table></figure>
+
+<p>返回的结果中只有一个字段（名字是“新字段”），里面的数据是cancat函数括号中的形式（字段1、2变成原表中对应的数据）。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT concat(&quot;姓名：&quot;,name,&quot;   年薪：&quot;,salary*12) AS annual_salary  FROM employee;</span><br></pre></td></tr></table></figure>
+
+<h3 id="case语句加工操作"><a href="#case语句加工操作" class="headerlink" title="case语句加工操作"></a>case语句加工操作</h3><p>通过case语句来结合条件对查询结果进行一些加工</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT (CASE </span><br><span class="line">        WHEN 字段1&#x3D;“数据1” THEN 字段1</span><br><span class="line">           WHEN 字段1&#x3D;“数据2” THEN concat(字段1,&quot;拼接项1&quot;)</span><br><span class="line">        ELSE concat(字段1,&quot;拼接项2&quot;) </span><br><span class="line">        END) AS 新字段名,字段2 FROM 表名;</span><br></pre></td></tr></table></figure>
+
+<p>当字段1的数据是“数据1”时直接返回，当字段1的数据是“数据2”时，将其与“拼接项1”进行拼接再返回，当字段1的数据不是“数据1”或“数据2”时，将其与“拼接项2”进行拼接再返回，字段2直接查询。</p>
+<h3 id="where约束"><a href="#where约束" class="headerlink" title="where约束"></a>where约束</h3><p>where后跟条件语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 字段1,字段2,··· FROM 表名 WHERE 条件语句;</span><br></pre></td></tr></table></figure>
+
+<p>例：查询id=6的记录条中的id和name</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id,name FROM 表名 WHERE id&#x3D;6;</span><br></pre></td></tr></table></figure>
+
+<p>除了=号外，还能使用其他的，如下：</p>
+<ol>
+<li><p>比较运算符：&gt; &lt; &gt;= &lt;= &lt;&gt; !=</p>
+</li>
+<li><p>between 80 and 100 值在80到100之间（开区间，没有等于）</p>
+</li>
+<li><p>in(80,90,100)  值是80或90或100</p>
+</li>
+<li><p>like ‘egon%’ 模糊查询</p>
+<p> pattern可以是%或__</p>
+<p> %表示任意</p>
+<p> _表示一个字符 </p>
+</li>
+<li><p>逻辑运算符：在多个条件直接可以使用逻辑运算符 and or not</p>
+</li>
+<li><p>is (not) null 判断是否为null（不能用=，只能用is）</p>
+</li>
+</ol>
+<p><strong>注</strong>：’’是空字符串，不是null，两个是不同的东西，null是啥也没有，’’是空的字符串的意思，是一种数据类型，null是另外一种数据类型。</p>
+<h3 id="分组查询（group-by）"><a href="#分组查询（group-by）" class="headerlink" title="分组查询（group by）"></a>分组查询（group by）</h3><ol>
+<li>将所有记录按照某个相同字段进行归类，比如针对员工信息表的职位分组，或者按照性别进行分组等</li>
+<li>为何要分组呢？是因为我们有时候会需要以组为单位来统计一些数据或者进行一些计算的</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#只能查询到该字段，想要获取组内其他相关信息，要借助函数</span><br><span class="line">SELECT 字段1 FROM 表名 GROUP BY 字段1;</span><br></pre></td></tr></table></figure>
+
+<p>group by关键字和group_concat()函数一起使用的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#通过字段1分组，并查看组内的所有字段2数据，以逗号拼接。</span><br><span class="line">SELECT 字段1,GROUP_CONCAT(字段2) FROM 表名 GROUP BY 字段1;</span><br><span class="line"></span><br><span class="line">#查看字段2和字段3的数据，两个数据以冒号拼接， 不同记录间以逗号分隔。</span><br><span class="line">SELECT 字段1,GROUP_CONCAT(字段2,&quot;：&quot;,字段3) FROM 表名 GROUP BY 字段1;</span><br></pre></td></tr></table></figure>
+
+<p>group by一般都会与聚合函数一起使用，聚合是什么意思：聚合就是将分组的数据聚集到一起，合并起来拿到一个最后的结果。</p>
+<p>关于聚合函数，mysql提供了以下几种聚合函数：count（总数量）、max、min、avg（平均值）、sum（总和）等，上面的group_concat也算是一个聚合函数。</p>
+<h3 id="排序查询（order-by）"><a href="#排序查询（order-by）" class="headerlink" title="排序查询（order by）"></a>排序查询（order by）</h3><p>按单列排序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表名 ORDER BY 字段名; ——默认是升序排列</span><br><span class="line"></span><br><span class="line">#升序</span><br><span class="line">SELECT * FROM 表名 ORDER BY 字段名 ASC;</span><br><span class="line"></span><br><span class="line">#降序</span><br><span class="line">SELECT * FROM 表名 ORDER BY 字段名 DESC;</span><br></pre></td></tr></table></figure>
+
+<p>按多列排序：</p>
+<p>先按照某一字段进行排序，在数据相同的一些记录中再进行一次排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#先按字段1进行降序排列，然后将排序后的字段1对应的数据的相同部分按字段2进行升序排列。</span><br><span class="line">SELECT * FROM 表名 ORDER BY 字段1 DESC,字段2 ASC;</span><br></pre></td></tr></table></figure>
+
+<h3 id="限制查询（limit）"><a href="#限制查询（limit）" class="headerlink" title="限制查询（limit）"></a>限制查询（limit）</h3><p>limit限制查询出的记录数量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#按字段1进行降序，从第一条开始取出3条数据，默认初始位置为0</span><br><span class="line">SELECT * FROM 表名 ORDER BY 字段1 DESC LIMIT 3;</span><br><span class="line"></span><br><span class="line">#从第0开始，即先查询出第一条，然后包含这一条在内往后查5条</span><br><span class="line">SELECT * FROM 表名 ORDER BY 字段1 DESC LIMIT 0,5;</span><br><span class="line"></span><br><span class="line">#从第5开始，即先查询出第6条，然后包含这一条在内往后查5条</span><br><span class="line">SELECT * FROM 表名 ORDER BY 字段1 DESC LIMIT 5,5;</span><br><span class="line"></span><br><span class="line">#查询最后一条数据</span><br><span class="line">SELECT * FROM 表名 ORDER BYY 字段 DESC LIMIT 1;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注</strong>：limit a,b;  即从第a条后面开始，查出b条数据。</p>
+<h3 id="正则查询"><a href="#正则查询" class="headerlink" title="正则查询"></a>正则查询</h3><p>使用like模糊查询只有%和_，比较局限。正则是通用的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查询字段2内符合正则的记录条内的字段1的数据</span><br><span class="line">select 字段1 from 表名 where 字段2 regexp &quot;正则表达式&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#查询指定字段内的以abc开头的数据。</span><br><span class="line">SELECT * FROM 表名 WHERE 字段名 REGEXP &quot;^abc&quot;;</span><br><span class="line"></span><br><span class="line">#查询指定字段内的以abc结尾的数据。</span><br><span class="line">SELECT * FROM 表名 WHERE 字段名 REGEXP &quot;abc$&quot;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT 字段列表</span><br><span class="line">    FROM 表1 INNER&#x2F;LEFT&#x2F;RIGHT JOIN 表2</span><br><span class="line">    ON 表1.字段 &#x3D; 表2.字段;</span><br></pre></td></tr></table></figure>
+
+<p>当两表均有不同时存在的记录时（即表1内有记录不在表2内，表2内有记录不在表1内，这些记录指得是两个表相关联的那个字段的数据，即employee表内的dep_id字段与department表内的id字段相关联），</p>
+<p>inner（内连接）仅显示同时存在的记录，</p>
+<p>left（外链接之左连接）优先显示左表记录，</p>
+<p>right（外链接之右连接）优先显示右表记录。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT employee.id,employee.name,department.name AS depart_name</span><br><span class="line">     FROM employee LEFT JOIN department</span><br><span class="line">     ON employee.dep_id&#x3D;department.id;</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/08/03/sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/多表查询1.png" width="200" height="155" alt="查询结果">
+
+<p>若要显示左右两表全部记录，使用union。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表1 LEFT JOIN 表2  ON 表1.字段&#x3D;表2.字段</span><br><span class="line">  UNION</span><br><span class="line">  SELECT * FROM 表1 RIGHT JOIN 表2 ON 表1.字段&#x3D;表2.字段;</span><br></pre></td></tr></table></figure>
+
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM employee LEFT JOIN department ON employee.dep_id&#x3D;department.id</span><br><span class="line">   UNION</span><br><span class="line">   SELECT * FROM employee RIGHT JOIN department ON employee.dep_id&#x3D;department.id;</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/08/03/sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/多表查询2.png" width="350" height="160" alt="查询结果">
+
+<h3 id="符合条件的连接查询"><a href="#符合条件的连接查询" class="headerlink" title="符合条件的连接查询"></a>符合条件的连接查询</h3>
       
     </div>
 
