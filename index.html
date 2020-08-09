@@ -117,6 +117,11 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
         <li class="menu-item menu-item-tags">
 
     <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
@@ -125,11 +130,6 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -195,7 +195,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 17:46:51" itemprop="dateModified" datetime="2020-08-06T17:46:51+08:00">2020-08-06</time>
+                <time title="修改时间：2020-08-09 17:55:20" itemprop="dateModified" datetime="2020-08-09T17:55:20+08:00">2020-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -370,11 +370,12 @@
 <p>此时，若字段一中存在数据x或这字段三中存在数据y，则不执行插入该数据条，只有当两者都不存在时，才插入数据。</p>
 <h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名(</span><br><span class="line">id int PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">name varchar(20),</span><br><span class="line">sex ENUM(&quot;male&quot;,&quot;female&quot;) NOT null DEFAULT &quot;male&quot;,</span><br><span class="line">age int,</span><br><span class="line">UNIQUE name); </span><br></pre></td></tr></table></figure>
 
+<p>auto_increment 表示：自增；primary key 表示：约束（不能重复且不能为空），用于加速查找。</p>
 <p>此例中，第一个字段为id，且是自增的；第二个字段为姓名，字符长度最大为20；第三个字段为性别，只能在“male”和“female”间选择，为空则默认为“male”;第四个字段为年龄，数据为整型。且name字段的数据可唯一。</p>
 <h2 id="行"><a href="#行" class="headerlink" title="行"></a>行</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><ol>
 <li>全部字段插入</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#对应字段进行插入</span><br><span class="line">INSERT INTO 表名 VALUES(值1，值2，值3，···);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#对应表的字段进行插入</span><br><span class="line">INSERT INTO 表名 VALUES(值1，值2，值3，···);</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>指定字段插入</li>
@@ -407,7 +408,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM 表名;</span><br></pre></td></tr></table></figure>
 
 <p>​    但是，一般我们用truncate ，能够将id置为零，delete不能将id置零，再插入的数据记录的id数继续递增。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE 表名;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE table 表名;</span><br></pre></td></tr></table></figure>
 
 <h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查询所有数据</span><br><span class="line">SELECT * FROM 表名;</span><br></pre></td></tr></table></figure>
 
@@ -422,7 +423,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 字段1,字段2,···,字段n FROM 表名;    ——将所有字段都写上</span><br></pre></td></tr></table></figure>
 
 <h3 id="去重查询（distinct）"><a href="#去重查询（distinct）" class="headerlink" title="去重查询（distinct）"></a>去重查询（distinct）</h3><p>当某个字段内有数据重复时，使用distinct可去重查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#查询指定字段内所有的数据，并全部返回v</span><br><span class="line">SELECT 字段 FROM 表名;</span><br><span class="line"></span><br><span class="line">#查询字段内所有数据，但重复的数据只返回一个</span><br><span class="line">SELECT DISTINCT 字段 FROM 表名;</span><br><span class="line"></span><br><span class="line">#当某条记录的字段1和字段2的数据都与另一条记录相同时，才会去重</span><br><span class="line">SELECT DISTINCT 字段1,字段2 FROM</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#查询指定字段内所有的数据，并全部返回</span><br><span class="line">SELECT 字段 FROM 表名;</span><br><span class="line"></span><br><span class="line">#查询字段内所有数据，但重复的数据只返回一个</span><br><span class="line">SELECT DISTINCT 字段 FROM 表名;</span><br><span class="line"></span><br><span class="line">#当某条记录的字段1和字段2的数据都与另一条记录相同时，才会去重</span><br><span class="line">SELECT DISTINCT 字段1,字段2 FROM</span><br></pre></td></tr></table></figure>
 
 <p><strong>注</strong>：distinct一般必须写在字段前面，不然会报错，但有些特别的用法可以结合着写到字段的中间或者后面<br>      （distinct 想写在其他字段后面需要配合聚合函数来写）。</p>
 <h3 id="四则运算查询"><a href="#四则运算查询" class="headerlink" title="四则运算查询"></a>四则运算查询</h3><p>通过查询语句查出来的表是内存中的一个虚拟表</p>
@@ -515,7 +516,115 @@
 
 <img src="/2020/08/03/sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/多表查询2.png" width="350" height="160" alt="查询结果">
 
-<h3 id="符合条件的连接查询"><a href="#符合条件的连接查询" class="headerlink" title="符合条件的连接查询"></a>符合条件的连接查询</h3>
+<h3 id="符合条件的连接查询"><a href="#符合条件的连接查询" class="headerlink" title="符合条件的连接查询"></a>符合条件的连接查询</h3><p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT employee.id,employee.name,employee.age,department.name </span><br><span class="line">FROM employee LEFT JOIN department </span><br><span class="line">ON employee.dep_id&#x3D;department.id </span><br><span class="line">WHERE age&gt;25</span><br><span class="line">ORDER BY age ASC;</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/08/03/sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/多表查询3.png" width="350" height="160" alt="查询结果">
+
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT employee.id,employee.name,employee.age,department.name</span><br><span class="line">FROM employee,department</span><br><span class="line">WHERE employee.dep_id&#x3D;department.id</span><br><span class="line">AND age&gt;25</span><br><span class="line">ORDER BY age ASC;</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/08/03/sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/多表查询4.png" width="350" height="160" alt="查询结果">
+
+<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><p>子查询其实就是将你的一个查询结果用括号括起来，这个结果也是一张表，就可以将它交给另外一个sql语句，作为它的一个查询依据来进行操作。</p>
+<ol>
+<li>应用思路</li>
+</ol>
+<p>如：</p>
+<p>首先从部门表里面找到技术部门对应的id</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id FROM department WHERE name&#x3D;&#39;技术&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>把查询结果用括号括起来，它就表示一条id=200的数据，然后我们通过员工表来查询dep_id=这条数据作为条件来查询员工的name</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT name FROM employee WHERE dep_id &#x3D; (SELECT id FROM department WHERE name&#x3D;&#39;技术&#39;);</span><br></pre></td></tr></table></figure>
+
+<p>总之，就是在一条sql查询语句内插入另一条用括号装着的sql查询语句，在括号内的查询语句会生成一个虚拟表，然后将这个虚拟表与外面的语句中的表进行连接查询。</p>
+<ol start="2">
+<li>带in关键字的子查询</li>
+</ol>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT id,name FROM department</span><br><span class="line">WHERE id IN</span><br><span class="line">(select dep_id from employee group by dep_id having avg(age)&gt;25);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT department.name FROM department</span><br><span class="line">INNER JOIN employee ON department.id&#x3D;employee.dep_id</span><br><span class="line">GROUP BY department.name</span><br><span class="line">HAVING AVG(age)&gt;25;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>带比较运算符的子查询</li>
+</ol>
+<p>例：查询大于部门内平均年龄的员工名、年龄</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT employee.name,employee.age FROM employee</span><br><span class="line">INNER JOIN</span><br><span class="line">(SELECT dep_id,AVG(age) AS avg_age FROM employee GROUP BY dep_id)</span><br><span class="line">AS employee2</span><br><span class="line">ON employee.dep_id&#x3D;employee2.dep_id</span><br><span class="line">WHERE employee.age&gt;employee2.avg_age;</span><br></pre></td></tr></table></figure>
+
+<p>括号内生成的虚拟表是找出部门id（dep_id）和对应的平均年龄（avg_age），当作employee2，怎结合employee查询符合要求的数据。</p>
+<ol start="4">
+<li>带exists（存在）关键字的子查询</li>
+</ol>
+<p>在使用EXISTS关键字时，内层查询语句不返回查询的记录。而是返回一个真假值（True或False）。</p>
+<p>当返回True时，外层查询语句将进行查询；当返回值为False时，外层查询语句不进行查询。</p>
+<p>还可以写not exists，和exists的效果就是反的。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM employee WHERE EXISTS</span><br><span class="line">(SELECT id FROM department WHERE id&#x3D;100);</span><br></pre></td></tr></table></figure>
+
+<p>返回值为空时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h2><h3 id="（查询）已有数据去重（保留第一条min、保留最后一条max）"><a href="#（查询）已有数据去重（保留第一条min、保留最后一条max）" class="headerlink" title="（查询）已有数据去重（保留第一条min、保留最后一条max）"></a>（查询）已有数据去重（保留第一条min、保留最后一条max）</h3><p>根据指定字段内的数据是否有重复，来返回数据。只返回第一条，后面重复的都舍弃。且只返回该字段的数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT 字段 FROM 表名;</span><br></pre></td></tr></table></figure>
+
+<p>只有两个字段的数据都一样（不论大小写），才算重复。其他同上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT 字段1,字段2 FROM 表名;</span><br></pre></td></tr></table></figure>
+
+<p>分组查询，也可用于去重查询，<strong>能查询所有字段数据</strong>。只会留下第一条，但查询结果的排序是按照字段1来排序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表名 GROUP BY 字段1[,字段2[,字段3...]];</span><br></pre></td></tr></table></figure>
+
+<p>指定字段内相同数据的记录中，只会保留id最小的记录，且结果只会显示出已经罗列出来的字段（包括id）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT MIN(id) AS id,字段1,字段2,... FROM 表名 GROUP BY 字段;</span><br></pre></td></tr></table></figure>
+
+<p>留下id最大的记录，其他同上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT MAX(id) AS id,字段1,字段2,... FROM 表名 GROUP BY 字段;</span><br></pre></td></tr></table></figure>
+
+<p>同上，但是查询结果的排序会按照order by指定的字段来排序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表名 GROUP BY 字段1[,字段2[,字段3...]] ORDER BY 字段;</span><br></pre></td></tr></table></figure>
+
+<p>抽取符合条件的第一条/最后一条。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT MIN(id)&#x2F;MAX(id) AS id,字段1[,字段2[,字段3...]] FROM 表名 WHERE 条件;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注</strong>：只用返回指定重复字段的数据时，用distinct；需要返回所有字段或指定字段时，用group by；还需要按指定排序返回时，group by与order by结合使用。</p>
+<h3 id="随机抽取"><a href="#随机抽取" class="headerlink" title="随机抽取"></a>随机抽取</h3><p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表名 ORDER BY rand() LIMIT 数量;</span><br></pre></td></tr></table></figure>
+
+<p>从符合条件的数据条中随机抽取指定数量的记录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表名 WHERE 条件 ORDER BY rand() LIMIT 数量;</span><br></pre></td></tr></table></figure>
+
+<h3 id="插入数据时，针对是否已存在此数据的操作（保留原先、保留现在）"><a href="#插入数据时，针对是否已存在此数据的操作（保留原先、保留现在）" class="headerlink" title="插入数据时，针对是否已存在此数据的操作（保留原先、保留现在）"></a>插入数据时，针对是否已存在此数据的操作（保留原先、保留现在）</h3><p><strong>首先</strong>，要将判断的字段设置成unique索引。</p>
+<ul>
+<li>后期直接修改字段属性：alter table 表名 add unique(字段1[,字段2…])；</li>
+<li>在建表时就设置unique索引，详见<a href="#%E5%85%B6%E4%BB%96">表操作</a>。</li>
+</ul>
+<ol>
+<li>数据存在则更新，不存在则插入</li>
+</ol>
+<p>指定的unique索引与原表没有重复数据时，则执行插入，存在重复数据时，则在那条记录中更新update指定的操作，没有指出的字段保持原有数据(状态)，如字段1保持不变。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名(字段1，字段2，...) VALUES(值1，值2，...)</span><br><span class="line">ON duplicate KEY UPDATE 字段2&#x3D;&#39;值2&#39;,字段3&#x3D;&#39;值3&#39;,...;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>保留原先数据</li>
+</ol>
+<p>只有当这个新的记录的所有unique索引都不存在重复数据时(或主键和唯一索引不存在重复数据时，需要在此sql语句内写出，如自增id)，才执行插入数据，否则保留原先。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT IGNORE INTO 表名(字段1,字段2) VALUES(值1,值2);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>保留新数据</li>
+</ol>
+<p>存在重复数据，则删除原记录，再(在最后)重新插入此纪录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE INTO 表名(字段1，字段2，...) VALUES(值1,值2,...);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h3><h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><h3 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h3><h3 id="枚举和集合"><a href="#枚举和集合" class="headerlink" title="枚举和集合"></a>枚举和集合</h3><h3 id="浮点型（小数）"><a href="#浮点型（小数）" class="headerlink" title="浮点型（小数）"></a>浮点型（小数）</h3>
       
     </div>
 
@@ -963,7 +1072,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-04 23:43:23" itemprop="dateModified" datetime="2020-08-04T23:43:23+08:00">2020-08-04</time>
+                <time title="修改时间：2020-08-09 18:05:36" itemprop="dateModified" datetime="2020-08-09T18:05:36+08:00">2020-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -986,9 +1095,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="文章描述"><a href="#文章描述" class="headerlink" title="文章描述"></a>文章描述</h2><p>​        测试用文档  暨  遇到的某些问题</p>
-<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><ol>
+          <h2 id="文章描述"><a href="#文章描述" class="headerlink" title="文章描述"></a>文章描述</h2><p>​        测试用文档  暨  遇到的某些问题 或其他。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><ol>
 <li>网站中的目录树不生效（详见linux文件）</li>
+</ol>
+<h2 id="博客待优化"><a href="#博客待优化" class="headerlink" title="博客待优化"></a>博客待优化</h2><ol>
+<li><p>背景：</p>
+<p> 增加图片，音乐？改变鼠标形状？</p>
+</li>
+<li><p>导航栏：</p>
+<p> 阅读文章时能快速回到主页或其他栏目（标签、分类、归档等）</p>
+<p> 增加博客内搜索功能；</p>
+</li>
+<li><p>主页：</p>
+<p> 个人头像</p>
+<p> 首页中，每篇文章有最长幅度的显示（目前会把文章全部翻完才能看到下一篇）</p>
+</li>
 </ol>
 
       
